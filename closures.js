@@ -188,13 +188,15 @@ function secretNumber() {
 
   return {
     addToSecret(pkey){
-      return (secret + pkey)
-    },
+      return (secret += pkey)
 
+    },
+    
     takeAwayFromSecret(nkey){
-      return (secret - nkey)
+      return (secret -= nkey)
     }
   };
+  console.log(secret)
 }
 
 
@@ -220,8 +222,8 @@ function secretNumber() {
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
     setTimeout(function() {
-      // console.log(i);
     }, i * 1000);
+    console.log(i);
   }
 }
 timeOutCounter();
