@@ -65,12 +65,12 @@ callJake('435-555-9248')
 
 //Code Here
 
-function makeCounter(num){
-  
+function makeCounter(){
+  let number = 0
   return function add() {
-    num++;
-    // console.log(testNum);
-    return add;
+    number++;
+    console.log(number);
+    return number;
   }
 }
 
@@ -220,10 +220,10 @@ function secretNumber() {
 */
 
 function timeOutCounter() {
-  for (var i = 0; i <= 5; i++) {
+  for (let i = 0; i <= 5; i++) {
     setTimeout(function() {
+      console.log(i);
     }, i * 1000);
-    console.log(i);
   }
 }
 timeOutCounter();
