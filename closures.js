@@ -24,13 +24,13 @@ function outer() {
   
 // Code Here
 
-
+var inner = outer();
 
 //Once you do that, invoke inner.
 
 //Code Here
 
-
+inner();
 
 ////////// PROBLEM 2 //////////
 
@@ -53,7 +53,9 @@ function callFriend(name) {
 
 //Code Here
 
+var callJake = callFriend('Jake');
 
+callJake('435-555-9248')
 
 ////////// PROBLEM 3 //////////
 
@@ -63,14 +65,20 @@ function callFriend(name) {
 
 //Code Here
 
+function makeCounter(num){
+  
+  return function add() {
+    num++;
+    // console.log(testNum);
+    return add;
+  }
+}
 
-
-//Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -78,26 +86,36 @@ function callFriend(name) {
 
 /*
   Inside the function called counterFactory return two functions that implement up/down counter.
+
   The first function is called inc, this function is responsible for incrementing the value once and returning the updated value.
+
   The second function is called dec, this function is responsible for decrementing the value by one and returning the updated value.
+
   You will need to use the module pattern to achieve this.
+
   Information on the module pattern available here: 
   http://stackoverflow.com/questions/17776940/javascript-module-pattern-with-example?answertab=votes#tab-top
 */
 
 function counterFactory(value) {
-  // Code here.
 
   return {
-
+    inc: function() {
+      value++;
+      return value;
+    },
+    dec: function() {
+      value--;
+      return value
+    }
   };
 }
 
 counter = counterFactory(10);
-// counter.inc() // 11
-// counter.inc() // 12
-// counter.inc() // 13
-// counter.dec() // 12
+counter.inc() // 11
+counter.inc() // 12
+counter.inc() // 13
+counter.dec() // 12
 
 
 
@@ -105,7 +123,9 @@ counter = counterFactory(10);
 
 /*
   Inside the motivation function create another function called message that will return the welcome text with the firstname and lastname.
+
   The final message should say "You're doing awesome, keep it up firstname lastname." 
+
   (Hint: don't forget to have a space between the firstname and lastname and a period at the end of the sentence.)
 */
 
@@ -113,9 +133,11 @@ function motivation( firstname, lastname ) {
   var welcomeText = "You're doing awesome, keep it up";
 
   // code message function here.
-
+      return function(message){
+        return `You're doing awesome, keep it up ${firstname} ${lastname}.`
+      }
   //Uncommment this to return the value of your message function
-  //return message;
+  return message;
 }
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
@@ -143,8 +165,11 @@ var module = (function() {
   // Anything that is being returned is made public and can be invoked from
   // outside our lexical scope
   return {
-    // Code here.
+    publicMethod(){
+      return privateMethod();
+    }
   };
+  module.publicMethod();
 })();
 
 
@@ -162,7 +187,13 @@ function secretNumber() {
   var secret = 143;
 
   return {
-    // Code here
+    addToSecret(pkey){
+      return (secret + pkey)
+    },
+
+    takeAwayFromSecret(nkey){
+      return (secret - nkey)
+    }
   };
 }
 
@@ -189,7 +220,7 @@ function secretNumber() {
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
     setTimeout(function() {
-      console.log(i);
+      // console.log(i);
     }, i * 1000);
   }
 }
